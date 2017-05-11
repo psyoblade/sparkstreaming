@@ -34,7 +34,9 @@ val ssc = new StreamingContext(conf, Seconds(1))
   * 고로 SparkContext 는 재사용이 가능하므로, StreamingContext.stop() 후에 다시 생성할 수 있다.
 ### Discretized Streams (DStreams)
  SparkStreaming에서 제공하는 연속적인 데이터 스트림을 표현하는 추상화 클래스이며, DStream은 RDD들의 continuous series 로 표현된다. 고로 RDD의 특성인 immutable, distributed dataset 등을 가진다.
- ![image](https://cloud.githubusercontent.com/assets/556238/5241760/e17ae9f4-78d9-11e4-86f5-6e168adcea87.png)
+![image](https://github.com/psyoblade/sparkstreaming/blob/master/images/streaming-dstream.png)
+![image](https://github.com/psyoblade/sparkstreaming/blob/master/images/streaming-dstream-ops.png)
+
 ### Input DStreams and Receivers
  입력 데이터는 이산화된 스트림(DStream)으로 수신되는데 기본적으로 Kafka, Flume 이런 데이터 소스를 생각하기 마련인데 가장 기본적인 데이터소스는 FileSystem 혹은 SocketStream 이다. 물론 다양한 기능을 가진 Kafka, Flume, Kinesis 등이 유용하긴 하다
  이러한 DStream은 연속적인 데이터를 전달하는 인터페이스이며 이와 1:1로 Receiver가 존재해야 하며 이는 Receiver 당 1개의 core 할당을 필요로 한다. 또한 항상 데몬처럼 떠 있어야 하므로, 해당 core는 dedicated 된 리소스로 충분한 코어수가 확보될 필요가 있다.
